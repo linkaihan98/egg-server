@@ -2,23 +2,19 @@
  * @Author: KAAN
  * @Date: 2022-04-21 16:52:12
  * @LastEditors: KAAN
- * @LastEditTime: 2022-04-26 18:41:28
+ * @LastEditTime: 2022-04-30 11:56:25
  * @Descripttion: 
  */
 
 'use strict';
 
 module.exports = app => {
-  const { STRING, INTEGER, DATE } = app.Sequelize;
+  const { STRING, INTEGER, DATE, TEXT } = app.Sequelize;
   const Article = app.model.define('articles', {
     article_id: {
       primaryKey: true,
       type: INTEGER,
       autoIncrement: true,
-    },
-    article_user: {
-      type: STRING(50),
-      allowNull: false,
     },
     article_title: {
       type: STRING(200),
@@ -29,6 +25,14 @@ module.exports = app => {
       type: STRING(500),
       defaultValue: null,
       comment: '文章摘要',
+    },
+    content_md: {
+      type: TEXT,
+      comment: 'MARKDOWN正文',
+    },
+    content_html: {
+      type: TEXT,
+      comment: 'HTML正文',
     },
     cover: {
       type: STRING,

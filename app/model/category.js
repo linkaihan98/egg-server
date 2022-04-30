@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-04-21 16:52:26
  * @LastEditors: KAAN
- * @LastEditTime: 2022-04-26 18:46:39
+ * @LastEditTime: 2022-04-30 01:48:00
  * @Descripttion: 
  */
 
@@ -37,10 +37,6 @@ module.exports = app => {
       type: DATE,
     },
   });
-
-  Category.associate = () => {
-    app.model.Category.hasMany(app.model.Article, { foreignKey: 'category_id' });
-  };
-
+  
   return Category;
 };

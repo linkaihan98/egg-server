@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-04-27 02:11:05
  * @LastEditors: KAAN
- * @LastEditTime: 2022-04-27 02:48:49
+ * @LastEditTime: 2022-04-29 17:53:59
  * @Descripttion: 
  */
 
@@ -33,15 +33,15 @@ class UserController extends Controller {
       username: { type: 'string' },
       password: { type: 'string' },
     });
-    const { password } = ctx.request.body;
-    const user = await ctx.service.admin.user.findUser(ctx.request.body);
+    const { username, password } = ctx.request.body;
+    const user = await ctx.service.admin.user.findUser(username);
     if (!user) {
       ctx.body = Fail(500, '用户不存在');
     } else if (generatePassword(password) !== user.password) {
       ctx.body = Fail(500, '密码错误，请重新输入');
     } else {
       const token = jwt.sign(
-        { uid: user.id, username: user.username },
+        { uid: user.id, username },
         SECRET,
         { expiresIn: EXPIRES }
       );
@@ -53,7 +53,7 @@ class UserController extends Controller {
         ...Success(200, 'Success'),
         data: {
           token,
-          username: user.username,
+          username,
         }
       };
     }

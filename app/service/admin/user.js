@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-04-27 02:17:55
  * @LastEditors: KAAN
- * @LastEditTime: 2022-04-27 02:24:10
+ * @LastEditTime: 2022-04-29 17:53:58
  * @Descripttion: 
  */
 
@@ -11,8 +11,11 @@
 const Service = require('egg').Service;
 
 class User extends Service {
-  async findUser(data) {
-    const { username } = data;
+  /**
+   * 获取用户信息
+   * @param {string} username 用户名
+   */
+  async findUser(username) {
     const user = await this.ctx.model.User.findOne({
       where: { username },
     });
