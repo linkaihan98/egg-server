@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-04-27 02:13:36
  * @LastEditors: KAAN
- * @LastEditTime: 2022-04-30 01:40:33
+ * @LastEditTime: 2022-05-29 14:37:40
  * @Descripttion: 
  */
 
@@ -15,6 +15,10 @@ module.exports = app => {
   router.post('/api/admin/login', controller.admin.user.login); // 登录
   
   router.get('/api/admin/tags', controller.admin.tag.getTagList); // 标签列表
+  router.post('/api/admin/addTag', controller.admin.tag.addTag); // 创建标签
+  router.post('/api/admin/delTag', controller.admin.tag.delTag); // 删除标签
+  router.post('/api/admin/setTagReference', controller.admin.tag.setTagReference); // 创建标签与文章的关联
+  router.post('/api/admin/delTagReference', controller.admin.tag.delTagReference); // 删除标签与文章的关联
 
   router.get('/api/admin/articles', controller.admin.article.getArticleList); // 文章列表
 
