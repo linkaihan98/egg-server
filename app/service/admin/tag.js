@@ -2,7 +2,7 @@
  * @Author: KAAN
  * @Date: 2022-04-29 16:20:12
  * @LastEditors: KAAN
- * @LastEditTime: 2022-05-29 14:34:03
+ * @LastEditTime: 2022-05-30 22:01:01
  * @Descripttion: 
  */
 
@@ -37,6 +37,15 @@ class Tag extends Service {
       where: { tag_name: tagName },
     });
     return tag;
+  }
+
+  /**
+   * 根据tag_id获取标签名
+   *  @param {string} tagId 标签id
+   */
+  async findTagNameById(tagId) {
+    const tag = await this.ctx.model.Tag.findByPk(tagId);
+    return tag && tag.tag_name;
   }
 
   /**
